@@ -178,7 +178,7 @@ python3 p_inference_classifier.py
 
 ---
 
-### 5️⃣ Run Sign Language to Speech Conversion (NEW!)
+### 5️⃣ Run Sign Language to Speech Conversion
 
 Start the complete sign-to-speech application with GUI:
 

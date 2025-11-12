@@ -132,7 +132,6 @@ dmypy.json
 
 # Project specific
 # Dataset and model files
-data/
 dataset/
 *.pkl
 *.pickle
