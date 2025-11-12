@@ -43,7 +43,6 @@ while True:
                 mp_drawing_styles.get_default_hand_landmarks_style(),
                 mp_drawing_styles.get_default_hand_connections_style())
 
-        # Use only the first hand to match training data
         hand_landmarks = results.multi_hand_landmarks[0]
         for i in range(len(hand_landmarks.landmark)):
             x = hand_landmarks.landmark[i].x

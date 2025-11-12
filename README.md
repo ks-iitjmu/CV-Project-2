@@ -91,6 +91,8 @@ pip install -r requirements.txt
 - `mediapipe==0.10.11` - Hand landmark detection
 - `opencv-python==4.9.0.80` - Computer vision operations
 - `scikit-learn==1.4.2` - Machine learning algorithms
+- `pillow==10.2.0` - Image processing for GUI
+- `pyttsx3==2.90` - Text-to-speech conversion
 
 ---
 
@@ -176,6 +178,37 @@ python3 p_inference_classifier.py
 
 ---
 
+### 5️⃣ Run Sign Language to Speech Conversion (NEW!)
+
+Start the complete sign-to-speech application with GUI:
+
+```bash
+python3 p_sign_to_speech.py
+```
+
+**Features**:
+- 🎥 Live webcam feed with hand tracking
+- 🖐️ Real-time hand landmark visualization
+- 🔤 Character-by-character text building
+- 📝 Sentence construction from recognized signs
+- 🔊 Text-to-speech conversion
+- 🎨 Clean, user-friendly GUI interface
+- ⌨️ Manual controls: Space, Backspace, Clear
+- 🗣️ Speak button for audio output
+
+**Interface Components**:
+- **Video Feed**: Shows live camera with hand detection
+- **Hand Landmarks**: Visual representation of detected hand landmarks
+- **Character Display**: Current recognized character
+- **Sentence Builder**: Accumulated text from recognized signs
+- **Control Buttons**:
+  - `Clear`: Reset sentence
+  - `Speak`: Convert text to speech
+  - `Space`: Add space between words
+  - `Backspace`: Remove last character
+
+---
+
 ## 🔬 How It Works
 
 ### Architecture Overview
@@ -235,6 +268,7 @@ project2/
 ├── 📄 p_create_dataset.py        # Step 2: Extract hand landmarks
 ├── 📄 p_train_classifier.py      # Step 3: Train ML model
 ├── 📄 p_inference_classifier.py  # Step 4: Real-time recognition
+├── 📄 p_sign_to_speech.py        # Step 5: Sign-to-Speech GUI Application (NEW!)
 │
 ├── 📄 requirements.txt            # Python dependencies
 ├── 📄 README.md                   # Documentation (this file)
