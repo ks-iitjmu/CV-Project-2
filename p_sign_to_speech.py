@@ -25,8 +25,47 @@ class SignLanguageToSpeech:
         
         # Initialize text-to-speech engine
         self.tts_engine = pyttsx3.init()
-        self.tts_engine.setProperty('rate', 150)  # Speed of speech
-        self.tts_engine.setProperty('volume', 1.0)  # Volume level
+        
+        # Set voice to female with better quality
+        voices = self.tts_engine.getProperty('voices')
+        
+        # Priority order: Look for MBROLA voices (better quality), then female voices
+        preferred_voices = ['mb-us1', 'mb-us2', 'english-us', 'female']
+        selected_voice = None
+        
+        # First, try to find MBROLA or high-quality voices
+        for voice in voices:
+            if voice.id:
+                voice_id_lower = voice.id.lower()
+                for preferred in preferred_voices:
+                    if preferred in voice_id_lower:
+                        selected_voice = voice.id
+                        break
+                if selected_voice:
+                    break
+        
+        # If no preferred voice found, try to find any female voice
+        if not selected_voice:
+            for voice in voices:
+                # Check if voice name contains 'female'
+                if voice.name and 'female' in voice.name.lower():
+                    selected_voice = voice.id
+                    break
+                # Check gender attribute if it exists
+                if hasattr(voice, 'gender') and voice.gender and 'f' in voice.gender.lower():
+                    selected_voice = voice.id
+                    break
+        
+        # If still no voice found, use index 1 if available
+        if not selected_voice and len(voices) > 1:
+            selected_voice = voices[1].id
+        
+        # Set the selected voice
+        if selected_voice:
+            self.tts_engine.setProperty('voice', selected_voice)
+        
+        self.tts_engine.setProperty('rate', 140)  # Speed of speech (slower = more soothing)
+        self.tts_engine.setProperty('volume', 0.9)  # Volume level
         
         # Load the trained model
         model_dict = pickle.load(open('./model.p', 'rb'))
